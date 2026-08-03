@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Executive Warehouse System - MSB</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -36,6 +36,7 @@
             padding: 30px 40px;
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Animasi masuk halaman */
@@ -67,16 +68,14 @@
 
         .header-brand {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Memastikan Rata Kiri */
-            gap: 8px;
+            align-items: center; /* Memastikan logo dan teks sejajar */
+            gap: 15px;
         }
 
         .main-logo {
             height: 55px; /* Ukuran proporsional */
             object-fit: contain;
             display: block;
-            margin-left: -5px; /* Menyesuaikan padding internal gambar logo jika ada */
             transition: transform 0.3s ease;
         }
         
@@ -94,6 +93,7 @@
             color: var(--gemini-blue); /* Biru solid, lebih clean */
             margin: 0;
             letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
         .brand-text p {
@@ -109,6 +109,7 @@
         .btn {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             padding: 12px 24px;
             border: none;
@@ -119,6 +120,7 @@
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             outline: none;
+            text-align: center;
         }
 
         /* Efek saat tombol diklik (Active state) */
@@ -128,6 +130,7 @@
             background: var(--gemini-blue);
             color: white;
             box-shadow: 0 6px 15px rgba(66, 133, 244, 0.3);
+            white-space: nowrap;
         }
         .btn-login:hover { background: #2b5cce; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(66, 133, 244, 0.4); }
 
@@ -144,7 +147,7 @@
             border: 1px solid var(--border-color);
         }
 
-        .action-bar { display: flex; gap: 12px; }
+        .action-bar { display: flex; gap: 12px; flex-wrap: wrap; }
 
         .btn-outline { background: #fff; color: var(--text-main); border: 1.5px solid #dadce0; }
         .btn-outline:hover { background: var(--hover-bg); border-color: var(--gemini-blue); color: var(--gemini-blue); transform: translateY(-2px); }
@@ -153,11 +156,10 @@
         .btn-export:hover { background: #24883c; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(52, 168, 83, 0.4); }
 
         /* Filter Controls */
-        .filter-container { display: flex; gap: 12px; flex: 1; }
+        .filter-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; flex: 1; }
 
         select {
-            flex: 1;
-            min-width: 180px;
+            width: 100%;
             padding: 12px 16px;
             border-radius: 8px;
             border: 1.5px solid #dadce0;
@@ -168,9 +170,15 @@
             outline: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%235f6368' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
         }
 
-        select:hover { border-color: #a0c3ff; background: var(--hover-bg); }
+        select:hover { border-color: #a0c3ff; background-color: var(--hover-bg); }
         select:focus { border-color: var(--gemini-blue); box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.15); }
 
         /* ===================================================== */
@@ -178,9 +186,9 @@
         /* ===================================================== */
         .summary-wrapper { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
-            gap: 25px; 
-            padding-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+            gap: 20px; 
+            padding-bottom: 10px;
         }
         
         .stat-card { 
@@ -195,6 +203,9 @@
             box-shadow: var(--shadow-md);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: default;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         /* Efek Hover untuk Kartu */
@@ -204,7 +215,7 @@
         }
         
         .stat-card h3 { margin: 0; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        .stat-card p { margin: 10px 0 0 0; font-size: 2.8rem; font-weight: 700; color: var(--text-main); transition: color 0.3s ease; }
+        .stat-card p { margin: 10px 0 0 0; font-size: 2.5rem; font-weight: 700; color: var(--text-main); transition: color 0.3s ease; word-break: break-word;}
 
         .stat-blue { border-top-color: var(--gemini-blue); }
         .stat-orange { border-top-color: var(--gemini-orange); }
@@ -245,6 +256,7 @@
             overflow-x: auto; 
             max-height: 600px; 
             padding: 0; 
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
         }
         
         table { width: 100%; border-collapse: separate; border-spacing: 0; white-space: nowrap; }
@@ -342,7 +354,7 @@
             background: rgba(240, 244, 248, 0.9);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            padding: 30px 20px;
+            padding: 20px;
         }
 
         .login-stage {
@@ -482,7 +494,7 @@
         .appsheet-toolbar { position: absolute; bottom: 30px; left: 30px; z-index: 100; display: flex; gap: 12px; }
         
         .btn-float {
-            display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center; gap: 8px; background: #fff; border: 1px solid var(--border-color);
             color: var(--text-main); text-decoration: none; padding: 14px 24px; border-radius: 50px;
             font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.95rem; cursor: pointer;
             box-shadow: var(--shadow-md); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -494,13 +506,48 @@
         .btn-float:active { transform: scale(0.92); }
         .btn-float-secondary { padding: 14px 18px; }
 
+        /* ===================================================== */
+        /* ================ MEDIA QUERIES (RESPONSIVE) =========== */
+        /* ===================================================== */
+        @media (max-width: 992px) {
+            .summary-wrapper { grid-template-columns: repeat(2, 1fr); }
+            .action-bar { flex: 1; justify-content: flex-end; }
+        }
+
         @media (max-width: 768px) {
-            body { padding: 20px 15px; }
-            .top-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .toolbar { flex-direction: column; align-items: stretch; }
-            .action-bar { justify-content: flex-start; overflow-x: auto; padding-bottom: 5px; }
-            .filter-container { flex-direction: column; }
-            .appsheet-toolbar { bottom: 20px; left: 20px; }
+            body { padding: 15px 12px; }
+            .dashboard-container { gap: 20px; }
+            
+            /* Header */
+            .top-header { flex-direction: column; align-items: stretch; gap: 20px; padding-bottom: 20px; }
+            .header-brand { flex-direction: column; text-align: center; align-items: center; }
+            .brand-text { align-items: center; }
+            .brand-text h1 { font-size: 1.8rem; }
+            .header-action { width: 100%; display: flex; justify-content: center; }
+            .btn-login { width: 100%; max-width: 300px; }
+
+            /* Toolbar & Filters */
+            .toolbar { flex-direction: column; align-items: stretch; padding: 20px 15px; gap: 20px;}
+            .filter-container { grid-template-columns: 1fr; width: 100%; }
+            .action-bar { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; justify-content: center; }
+            
+            /* Table */
+            .modern-card, .table-section { padding: 15px; }
+            .col-nama { max-width: 140px; } /* Membatasi lebar sticky column di layar kecil */
+            th, td { padding: 12px 15px; font-size: 0.9rem; }
+            
+            /* AppSheet Controls */
+            .appsheet-toolbar { bottom: 20px; left: 50%; transform: translateX(-50%); width: auto; justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .summary-wrapper { grid-template-columns: 1fr; } /* Kartu menumpuk vertikal di HP */
+            .stat-card { padding: 20px; text-align: center; }
+            .stat-card p { font-size: 2.2rem; }
+            
+            .action-bar { grid-template-columns: 1fr; } /* Tombol aksi menumpuk vertikal */
+            .chart-container { height: 280px; } /* Grafik lebih kecil di HP */
+            .login-card { padding: 30px 20px; border-radius: 16px;}
         }
         
         @media print {
